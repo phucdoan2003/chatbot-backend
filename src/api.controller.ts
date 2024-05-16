@@ -8,7 +8,7 @@ export class ApiController {
 
   constructor(private readonly appService: AppService) {}
 
-  @Post('postMessage') 
+  @Post('post-message') 
   async postMessage(@Body() data: any, @Res() res: any): Promise<any> { 
 
     const chatModel = new ChatOpenAI();
