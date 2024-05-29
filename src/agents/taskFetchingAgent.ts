@@ -204,7 +204,8 @@ export const planAndSchedule: RunnableFunc<{[key: string]: any}, any> = async (
        - Always call join as the last action in the plan. Say '<END_OF_PLAN>' after you call join
        - Ensure the plan maximizes parallelizability.
        - Only use the provided action types. If a query cannot be addressed using these, invoke the join action for the next steps.
-       - Never introduce new actions other than the ones provided.`],
+       - Never introduce new actions other than the ones provided.
+       - If you think the user query does not need to utilize those tools, then do not use them. You do not have to use every tools for every query you receive`],
         ["placeholder", "{messages}"],
         ["system", `Remember, ONLY respond with the task list in the correct format! E.g.:
       idx. tool(arg_name=args)`],

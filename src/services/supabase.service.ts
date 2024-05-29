@@ -26,11 +26,10 @@ export class SupabaseService {
                 continue
             }
 
-            const content = message.content as string
-            content.replace(/\n/g, ' ')
+            const content = JSON.stringify(message.content).replaceAll("\n", " ").replaceAll(String.fromCharCode(92), "")
 
             const document: Document = {
-                content: message.content as string,
+                content: content,
                 embedding: await embedModel.embedQuery(message.content as string),
                 metadata: {
                     messageType: message._getType(),

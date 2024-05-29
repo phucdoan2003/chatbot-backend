@@ -3,9 +3,12 @@ import { AIMessage, BaseMessage } from '@langchain/core/messages';
 import { planAndSchedule } from 'src/agents/taskFetchingAgent';
 import { MessageGraph } from '@langchain/langgraph';
 import { createJoinerAgent } from 'src/agents/joinerAgent';
+import { CompiledStateGraph } from '@langchain/langgraph/dist/graph/state';
 
 @Injectable()
 export class LLMCompilerGraph {
+  private graph: any
+
   async setupGraph() {
 	  const joiner = await createJoinerAgent()
 
