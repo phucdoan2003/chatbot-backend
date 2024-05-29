@@ -26,6 +26,9 @@ export class SupabaseService {
                 continue
             }
 
+            const content = message.content as string
+            content.replace(/\n/g, ' ')
+
             const document: Document = {
                 content: message.content as string,
                 embedding: await embedModel.embedQuery(message.content as string),
