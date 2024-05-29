@@ -18,13 +18,14 @@ export class TavilySearchService {
         const prompt = ChatPromptTemplate.fromMessages([
             ["system",`For the given input, use the Tavily Search Tool to find related information\
             Return information from at least 3 search results
-            {format_instructions}
             {input}`],
             new MessagesPlaceholder("agent_scratchpad")
         ])
 
         
-        const tools = [new TavilySearchResults({maxResults: 5})]
+        const tools = [new TavilySearchResults({
+            maxResults: 5,
+        })]
         
         const llm = new ChatOpenAI({
             model: "gpt-4o",
@@ -40,6 +41,7 @@ export class TavilySearchService {
         const agentExecutor = new AgentExecutor({
             agent,
             tools,
+            verbose: true
         });
 
         const parser = new JsonOutputFunctionsParser()
